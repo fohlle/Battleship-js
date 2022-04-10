@@ -8,7 +8,8 @@ module.exports = {
     static: './dist',
   },
   entry: {
-    index:"./src/index.js"
+    index:"./src/index.js",
+    ship:"./src/ship.js"
   },
   output: {
     filename: '[name].bundle.js',
