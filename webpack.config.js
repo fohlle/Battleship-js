@@ -9,7 +9,8 @@ module.exports = {
   },
   entry: {
     index:"./src/index.js",
-    ship:"./src/ship.js"
+    ship:"./src/ship.js",
+    gameboard: "./src/gameboard.js"
   },
   output: {
     filename: '[name].bundle.js',
