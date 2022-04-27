@@ -10,7 +10,10 @@ module.exports = {
   entry: {
     index:"./src/index.js",
     ship:"./src/ship.js",
-    gameboard: "./src/gameboard.js"
+    gameboard: "./src/gameboard.js",
+    player:"./src/player.js",
+    dom: "./src/dom.js",
+    game: "./src/game.js"
   },
   output: {
     filename: '[name].bundle.js',

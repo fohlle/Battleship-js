@@ -1,3 +1,76 @@
-body{
-  background-color: green;
+:root{
+  --border1:black solid 1px;
 }
+
+
+*{
+  padding:0;
+  margin:0;
+  font-size:24px;
+}
+
+body,
+html{
+  height:100%;
+  width:100%;
+  background-color: #BBB7B6;
+}
+
+/* WRAPPER */
+
+.wrapper{
+  margin:0 auto;
+  width:90vw;
+  background-color: aliceblue;
+  height:100%;
+  display:flex;
+  align-items: center;
+}
+
+
+/* WRAPPER */
+
+/* MAIN-CONTAINER */
+
+.main-c{
+  min-height:60%;
+  width:100%;
+  display:flex;
+  justify-content: space-around;
+}
+
+/* MAIN-CONTAINER */
+
+/* BATTLE-CONTAINER */
+
+.battle-c{
+flex:1;
+border:var(--border1);
+display:grid;
+grid-template-columns: repeat(10, 1fr);
+grid-template-rows: repeat(10, 1fr);
+margin:20px;
+max-width:500px;
+max-height:500px;
+}
+
+.battle-c div{
+  border:var(--border1);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BATTLE-CONTAINER */
+
+/*  */
+/*  */
+
+/*  */
+/*  */
+
+/*  */
+/*  */
+
+
+

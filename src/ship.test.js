@@ -11,14 +11,14 @@ test("false", () => {
 
 test("hit", () => {
   const testShip = ship.makeShip(4);
-  testShip.hit(4);
+  testShip.hit();
   let health = testShip.showHealth();
-  expect(health[3]).toEqual("X");
+  expect(health).toEqual(3);
 })
 
 test("sunk", () => {
   const testShip = ship.makeShip(2);
-  testShip.hit(1);
-  testShip.hit(2);
+  testShip.hit();
+  testShip.hit();
   expect(testShip.sunk()).toBe(true);
 })
