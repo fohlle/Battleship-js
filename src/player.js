@@ -42,14 +42,15 @@ const player_c = (function(){
       },
       attack: function(xy){
         xy = "X";
+      },
+      aiAttack: function(){
+        let attackOne = Math.floor(Math.random() * 10);
+        let attackTwo = Math.floor(Math.random() * 10);
+        return [attackOne, attackTwo];
       }
     }
   }
 
-  function aiAttack(){
-   let attack = Math.floor(Math.random() * 10);
-   return [attack, attack];
-  }
 
   return{
     makePlayer,

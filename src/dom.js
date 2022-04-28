@@ -13,6 +13,8 @@ const makeDom = (function(){
   const playerOne = player_c.playerOne;
   const enemyOne = player_c.ai;
 
+  let enemyTurn = false;
+
   function getElements(){
     return{
       player,
@@ -38,34 +40,65 @@ const makeDom = (function(){
     children.forEach( n => {
       n.addEventListener("click", (e) => {
         let node = e.target;
-        hitOrMiss(node);
+        hitOrMiss(node, enemyBoard, enemyOne);
+        if(gameOver()){
+          return;
+        }
+        if(enemyTurn === true){
+          enemyAttack();
+          enemyTurn = false;
+        }
       })
     });
   }
 
-  function hitOrMiss(node){
-    const board = enemyBoard.getBoard();
-    const target = enemyBoard.getIndex(node.dataset.id)
+  function enemyAttack(){
+    console.log("Enemy attack");
+    const attack = enemyOne.aiAttack();
+    let node = document.querySelector(`.player div[data-id='${attack}']`);
     if(node.innerText === "X"){
-      console.log("Already taken");
-      return;
+      console.log("do again")
+      enemyAttack();
     }
-    if(target === ""){
-      node.innerText = "X";
-    }else{
-      node.innerText = "X";
-      node.style.backgroundColor = "Black";
-      shipIsHit(target);
-      gameOver();
-    }
+    console.log(node.innerText);
+    hitOrMiss(node, playerBoard, playerOne);
+  }
+
+  function hitOrMiss(node, board, player){
+    //const board = enemyBoard.getBoard();
+    const target = board.getIndex(node.dataset.id)
+      if(node.innerText === "X"){
+        return false;
+      }
+      if(target === ""){
+        node.innerText = "X";
+        enemyTurn = true;
+        return true;
+      }else{
+        node.innerText = "X";
+        node.style.backgroundColor = "Black";
+        shipIsHit(target, player);
+        enemyTurn = true;
+        gameOver();
+        return true;
+      }
   }
 
   function gameOver(){
-    console.log(enemyOne.allSunk());
+    let over = false;
+    if(enemyOne.allSunk()){
+      console.log("Game Over Player Won");
+      over = true;
+    }
+    if(playerOne.allSunk()){
+      console.log("Game Over Enemy Won");
+      over = true;
+    }
+    return over;
   }
 
-  function shipIsHit(shipName){
-    const ships = enemyOne.getShips()[`${shipName}`];
+  function shipIsHit(shipName, player){
+    const ships = player.getShips()[`${shipName}`];
     ships.hit();
   }
 
